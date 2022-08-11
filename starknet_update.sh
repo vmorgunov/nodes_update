@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rustup update
+pip install --upgrade pip
+
+cd ~/pathfinder
+git fetch
+git checkout v0.3.0-alpha
+cargo build --release --bin pathfinder
+mv ~/pathfinder/target/release/pathfinder /usr/local/bin/
+cd py
+source .venv/bin/activate
+PIP_REQUIRE_VIRTUALENV=true pip install -r requirements-dev.txt
+systemctl restart starknetd
+echo -e '\n\e[42m Молодец тигр у тебя все получилось :) \e[0m\n' && sleep 1

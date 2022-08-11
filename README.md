@@ -6,6 +6,12 @@
 wget -O sui_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/sui_update.sh && chmod +x sui_update.sh && ./sui_update.sh
 ```
 
+# SUI DB reset
+
+```ruby
+
+```
+
 # Gear
 
 ```ruby
@@ -23,4 +29,12 @@ wget -O minima_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_updat
 
 ```ruby
 curl 127.0.0.1:9002/status | jq | grep block
+```
+
+# Starknet
+
+```ruby
+
+
+
 ```
