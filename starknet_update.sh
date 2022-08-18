@@ -12,4 +12,4 @@ cd py
 source .venv/bin/activate
 PIP_REQUIRE_VIRTUALENV=true pip install -r requirements-dev.txt
 systemctl restart starknetd
-echo -e '\n\e[42m Молодец тигр у тебя все получилось :) \e[0m\n' && sleep 1
+echo -e '\n\e[42m Starknet was successfully updated \e[0m\n' && sleep 1
