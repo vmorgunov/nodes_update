@@ -19,6 +19,12 @@ wget -O sui_db_clear.sh https://raw.githubusercontent.com/vmorgunov/nodes_update
 wget -O gear_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/gear_update.sh && chmod +x gear_update.sh && ./gear_update.sh
 ```
 
+Version 2
+
+```ruby
+wget -O gear-update-2.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/gear-update-2.sh && chmod +x gear-update-2.sh && ./gear-update-2.sh
+```
+
 # Minima
 
 ```ruby
