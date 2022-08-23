@@ -43,3 +43,9 @@ curl 127.0.0.1:9002/status | jq | grep block
 ```ruby
 wget -O starknet_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/starknet_update.sh && chmod +x starknet_update.sh && ./starknet_update.sh
 ```
+
+Version 2
+
+```ruby
+wget -O starknet_update_2.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/starknet_update_2.sh && chmod +x starknet_update_2.sh && ./starknet_update_2.sh
+```
