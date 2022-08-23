@@ -1,5 +1,3 @@
-# nodes script tutorial for update
-
 # SUI
 
 ```ruby
