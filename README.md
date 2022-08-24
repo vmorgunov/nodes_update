@@ -47,9 +47,3 @@ Version 2
 ```ruby
 wget -O starknet_update_2.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/starknet_update_2.sh && chmod +x starknet_update_2.sh && ./starknet_update_2.sh
 ```
-
-# Aptos
-
-```ruby
-wget -O aptos.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/aptos.sh && chmod +x aptos.sh && ./aptos.sh
-```
