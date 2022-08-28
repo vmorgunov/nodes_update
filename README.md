@@ -47,3 +47,11 @@ Version 2
 ```ruby
 wget -O starknet_update_2.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/starknet_update_2.sh && chmod +x starknet_update_2.sh && ./starknet_update_2.sh
 ```
+
+# Lukso
+
+CLI update
+
+```ruby
+wget -O lukso_update_cli.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/lukso_update_cli.sh && chmod +x lukso_update_cli.sh && ./lukso_update_cli.sh
+```
