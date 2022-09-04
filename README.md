@@ -49,3 +49,9 @@ CLI update
 ```ruby
 wget -O lukso_update_cli.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/lukso_update_cli.sh && chmod +x lukso_update_cli.sh && ./lukso_update_cli.sh
 ```
+
+# Bundlr
+
+```ruby
+wget -O bundlr_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/bundlr_update.sh && chmod +x bundlr_update.sh && ./bundlr_update.sh
+```
