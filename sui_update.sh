@@ -16,3 +16,4 @@ wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main
 systemctl restart suid
 
 echo -e '\n\e[42m SUI was successfully updated \e[0m\n' && sleep 1
+sui -V
