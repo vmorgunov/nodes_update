@@ -12,7 +12,7 @@ wget -O sui_db_clear.sh https://raw.githubusercontent.com/vmorgunov/nodes_update
 ```
 
 ```ruby
-wget -O sui_db_clear.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/sui_reload.sh && chmod +x sui_reload.sh && ./sui_reload.sh
+wget -O sui_reload.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/sui_reload.sh && chmod +x sui_reload.sh && ./sui_reload.sh
 
 ```
 
