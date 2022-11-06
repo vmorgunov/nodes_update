@@ -2,7 +2,7 @@
 
 sudo systemctl stop gear
 /root/gear-node purge-chain -y
-wget https://builds.gear.rs/gear-nightly-linux-x86_64.tar.xz
+wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz
 sudo tar -xvf gear-nightly-linux-x86_64.tar.xz -C /root
 rm gear-nightly-linux-x86_64.tar.xz
 sudo systemctl start gear
