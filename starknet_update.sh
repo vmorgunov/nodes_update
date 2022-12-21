@@ -16,4 +16,4 @@ pip install --upgrade pip
 systemctl restart starknetd
 echo -e '\n\e[42m Starknet was successfully updated \e[0m\n' && sleep 1
 pathfinder -V
-sklg
+journalctl -u starknetd -f -o cat
