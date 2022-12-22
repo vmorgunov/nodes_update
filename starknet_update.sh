@@ -4,7 +4,7 @@ cd ~/pathfinder
 
 rustup update
 git fetch
-git checkout v0.4.4
+git checkout v0.4.5
 cargo build --release --bin pathfinder
 mv ~/pathfinder/target/release/pathfinder /usr/local/bin/
 cd py
