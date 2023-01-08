@@ -11,6 +11,7 @@ fi
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
     . $HOME/.bash_profile
+fi
 
 echo -e '\n\e[42mUpgrade software\e[0m\n' && sleep 1
 systemctl stop suid
