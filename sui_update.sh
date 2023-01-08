@@ -1,5 +1,18 @@
 #!/bin/bash
+exists()
+{
+  command -v "$1" >/dev/null 2>&1
+}
+if exists curl; then
+	echo ''
+else
+  sudo apt update && sudo apt install curl -y < "/dev/null"
+fi
+bash_profile=$HOME/.bash_profile
+if [ -f "$bash_profile" ]; then
+    . $HOME/.bash_profile
 
+echo -e '\n\e[42mUpgrade software\e[0m\n' && sleep 1
 systemctl stop suid
 rm -rf /var/sui/db/* /var/sui/genesis.blob $HOME/sui
 source $HOME/.cargo/env
@@ -15,5 +28,5 @@ mv ~/sui/target/release/sui /usr/local/bin/
 wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 systemctl restart suid
 
-echo -e '\n\e[42m SUI was successfully updated \e[0m\n' && sleep 1
+echo -e '\n\e[42mUpgrade completed\e[0m\n' && sleep 1
 sui -V
