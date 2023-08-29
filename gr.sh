@@ -86,9 +86,9 @@ function cleardb {
 function updateSoftware {
 	sudo systemctl stop gear
 	sleep 2
-	wget https://get.gear.rs/gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
-  	tar xvf gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
-  	rm gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz
+	wget https://get.gear.rs/gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	tar xvf gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	rm gear-nightly-x86_64-unknown-linux-gnu.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 	sleep 2
 	sudo systemctl restart gear
