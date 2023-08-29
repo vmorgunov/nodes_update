@@ -52,32 +52,28 @@ function installDeps {
 
 function installSoftware {
   echo -e '\n\e[42mInstall node\e[0m\n' && sleep 1
-	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	rm gear-nightly-linux-x86_64.tar.xz
+	wget https://get.gear.rs/gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	tar xvf gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	rm gear-nightly-x86_64-unknown-linux-gnu.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 }
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V4
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V3 
 	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
-	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v4/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V4  
-	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v3/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V3  
+	 #создаем бекап
+	 last=$(ls -tr1 $HOME/.local/share/gear/chains | tail -1)
+	 if [  -d $HOME/.local/share/gear/chains/$last ]; then
+		cp $HOME/.local/share/gear/chains/$last/network/secret_ed25519 $HOME/gearbackup/secret_ed25519 
 	 fi
 	 echo -e "BackUp ready \e[39m!"
 	}
 function restore {
-	if [ -d $HOME/.local/share/gear/chains/*** ]; then
-	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/***/network/secret_ed25519 
+	sleep 45
+	last=$(ls -tr1 $HOME/.local/share/gear/chains | tail -1)
+	backup=$(ls -tr1 $HOME/gearbackup/ | tail -1)
+	if [ -d $HOME/.local/share/gear/chains/$last ]; then
+	cp $HOME/gearbackup/$backup $HOME/.local/share/gear/chains/$last/network/secret_ed25519
 	fi
 	sudo systemctl restart gear
 	
@@ -90,18 +86,12 @@ function cleardb {
 function updateSoftware {
 	sudo systemctl stop gear
 	sleep 2
-	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	rm gear-nightly-linux-x86_64.tar.xz
+	wget https://get.gear.rs/gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	tar xvf gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	rm gear-v0.3.1-x86_64-unknown-linux-gnu.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 	sleep 2
 	sudo systemctl restart gear
-	if [[ `service gear status | grep active` =~ "running" ]]; then
-          echo -e "Your gear node \e[32mupgraded and works\e[39m!"
-          echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
-        else
-          echo -e "Your gear node \e[31mwas not upgraded correctly\e[39m, please reinstall."
-        fi
 	 . $HOME/.bash_profile
 }
 function logs {
@@ -147,13 +137,13 @@ function deletegear {
 		systemctl stop gear
 		systemctl disable gear
 		rm $HOME/gear
-		rm -rf $HOME/.local/share/gear/chains/staging_testnet/db
+		rm -rf $HOME/.local/share/gear/
 }
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-#options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
-options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
+options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
+#options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -164,13 +154,15 @@ do
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
-			echo -e "Check logs: \e[35m journalctl -u gear -n 50\e[0m\n"
+			restore
+			echo -e "Check logs: \e[35m journalctl -n 100 -f -u gear\e[0m\n"
 			break
             ;;
 		"Update")
-            echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
+            echo -e '\n\e[33mYou choose update...\e[0m\n' && sleep 1
+	    		backup
 			updateSoftware
-			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
+			echo -e '\n\e[33mYour node was update!\e[0m\n' && sleep 1
 			break
             ;;
 	    "Upgrade")
@@ -195,6 +187,7 @@ do
 				;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
+			backup
 			deletegear
 			echo -e '\n\e[42mGear was deleted!\e[0m\n' && sleep 1
 			break
