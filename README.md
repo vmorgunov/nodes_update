@@ -21,3 +21,7 @@ wget -O bundlr_update.sh https://raw.githubusercontent.com/vmorgunov/nodes_updat
 ```ruby
 wget -O shardeum_monitor.sh https://raw.githubusercontent.com/vmorgunov/nodes_update/main/shardeum_monitor.sh && chmod +x shardeum_monitor.sh && ./shardeum_monitor.sh
 ```
+
+```ruby
+. <(wget -qO- https://raw.githubusercontent.com/vmorgunov/nodes_update/main/subspace.sh)
+```
