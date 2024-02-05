@@ -1,6 +1,6 @@
 #!/bin/bash
 # Default variables
-version="gemini-3g-2024-jan-29"
+version= "gemini-3h-2024-feb-05"
 function="install"
 # Options
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -91,7 +91,7 @@ services:
     restart: unless-stopped
     command:
       [
-        "--chain", "gemini-3g",
+        "--chain", "gemini-3h",
         "--base-path", "/var/subspace",
         "--execution", "wasm",
         "--blocks-pruning", "256",
@@ -155,7 +155,7 @@ services:
     restart: unless-stopped
     command:
       [
-        "--chain", "gemini-3g",
+        "--chain", "gemini-3h",
         "--base-path", "/var/subspace",
         "--execution", "wasm",
         "--blocks-pruning", "256",
@@ -210,8 +210,6 @@ uninstall() {
 cd $HOME/subspace
 docker compose down -v
 sleep 2
-#dialog
-#. <(wget -qO- https://raw.githubusercontent.com/mgpwnz/subspace/main/subspace_un.sh)
 sudo rm -rf $HOME/subspace 
 unset SUBSPACE_PLOT_SIZE
 echo "Done"
