@@ -25,7 +25,3 @@ wget -O shardeum_monitor.sh https://raw.githubusercontent.com/vmorgunov/nodes_up
 ```ruby
 . <(wget -qO- https://raw.githubusercontent.com/vmorgunov/nodes_update/main/subspace.sh)
 ```
-
-```ruby
-. <(wget -qO- https://raw.githubusercontent.com/DOUBLE-TOP/guides/main/0g/check.sh)
-```
